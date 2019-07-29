@@ -1,14 +1,14 @@
 /* rates Types */
 export const ratesTypes = {
-    FETCH_RATES: 'FETCH_RATES',
+    FETCH_LATEST: 'FETCH_LATEST',
 }
 
 /* rates Actions */
 export const rates = {
-    fetchLoads: (rates) => {
+    fetchLatest: (latest) => {
         return {
-            type: ratesTypes.FETCH_LOADS,
-            rates
+            type: ratesTypes.FETCH_LATEST,
+            latest
         }
     },
 }

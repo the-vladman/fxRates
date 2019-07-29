@@ -1,16 +1,19 @@
 import { ratesTypes } from '../actions/rates'
 
 const initialRates = {
-    ratesList: [],
+    historicalRates: [],
     currenciesList: [],
+    baseCurrency: 'MXN',
 }
 
 const ratesApp = (state = initialRates, action) => {
     switch (action.type) {
-        case ratesTypes.FETCH_RATES:
+        case ratesTypes.FETCH_LATEST:
             return {
                 ...state,
-                ratesList: action.rates
+                today: action.latest.date,
+                currenciesList: Object.keys(action.latest.rates),
+                historicalRates: [{...action.latest.rates, date : action.latest.date }]
             }
 
         default:
