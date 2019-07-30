@@ -16,6 +16,12 @@ const ratesApp = (state = initialRates, action) => {
                 historicalRates: [{...action.latest.rates, date : action.latest.date }]
             }
 
+        case ratesTypes.ADD_HISTORICAL:
+            return {
+                ...state,
+                historicalRates: [action.rates, ...state.historicalRates]
+            }
+
         case ratesTypes.SELECT_CURRENCY:
             return {
                 ...state,
