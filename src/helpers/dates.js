@@ -1,3 +1,5 @@
+/* Date Helper */
+
 const removeDays = (date, days) => {
     var result = new Date(date);
     result.setDate(result.getDate() - days);
@@ -14,7 +16,6 @@ const getDay = (day) => addZero(day.getDate());
 const getDayLess = (day, days) => {
     const dayLess = removeDays(day, days);
     const dayLessString = `${getYear(dayLess)}-${getMonth(dayLess)}-${getDay(dayLess)}`;
-    console.log(dayLessString);
     return dayLessString
 }
 
