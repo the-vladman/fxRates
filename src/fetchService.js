@@ -1,11 +1,15 @@
 
-const getLatest = async() => {
+import DateHelper from './helpers/dates';
+const apiHost = process.env.REACT_APP_API_HOST ? process.env.REACT_APP_API_HOST : 'http://data.fixer.io/api';
+const apiKey = process.env.REACT_APP_API_KEY ? process.env.REACT_APP_API_KEY : 'key';
+
+const getLatestStatic = async() => {
     try {
         const fares = {
             "success": true,
             "timestamp": 1564252266,
             "base": "EUR",
-            "date": "2019-07-27",
+            "date": "2019-07-10",
             "rates": {
               "AED": 4.094531,
               "AFN": 89.18058,
@@ -177,8 +181,41 @@ const getLatest = async() => {
               "ZWL": 358.95018
             }
         };
+        getHistoric(fares)
         return fares;
     } catch (error) {
-        
+        throw error;
     }
+}
+
+const getHistoric = async(fares) => {
+    const todayDate = new Date(fares.date);
+    console.log(fares);
+    for (let index = 1; index < 8; index++) {
+        let dayString = DateHelper.getDayLess(todayDate, index);
+        console.log();
+        
+      }
+}
+
+const getLatest = async() => {
+    try {
+        const response = await fetch(`${apiHost}/latest?access_key=${apiKey}`);
+        if (response.status !== 200){
+            const error = { message: 'Error' };
+            throw error;
+        }
+        const json = await response.json();
+        if (json.error) {
+            throw json.error.info;
+        }
+        return json;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export default {
+    getLatestStatic,
+    getLatest
 }
