@@ -3,25 +3,24 @@ import PropTypes from 'prop-types';
 
 import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
-
 class HistoricalLineChart extends PureComponent {
     
     _renderLineChart = (data, currency, lineStroke) => (
-        <LineChart data={data}>  
-          <CartesianGrid strokeDasharray="5 5" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
+        <LineChart data={data}> 
+          <Line name="Value" dataKey={currency} stroke={lineStroke}/>  
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date"/>
+          <YAxis type='number' padding={{ left: 10 }} domain={[dataMin => (Math.round(dataMin) - .5), dataMax => (Math.round(dataMax) + .5)]}/>
+          <Tooltip formatter={value => value.toFixed(4)}/>
           <Legend verticalAlign='top'/>
-          <Line name="Value" dataKey={currency} stroke={lineStroke} />
         </LineChart>
     );
 
     render () {
         const { data, currency } = this.props;
         return (
-            <ResponsiveContainer width="95%" height={600}>
-                {this._renderLineChart(data, currency, '#0CA669')}
+            <ResponsiveContainer height={600}>
+                {this._renderLineChart(data, currency, '#8dd1e1')}
             </ResponsiveContainer>                                     
         )
     }
