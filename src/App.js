@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { rates } from "./actions/rates";
 import { CHistoricalLineChart } from "./containers/CHistoricalLineChart";
 import { CSelectCurrency } from "./containers/CSelectCurrency";
+import { CInputChange } from "./containers/CInputChange";
+import { CExchangeValue } from "./containers/CExchangeValue";
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
@@ -24,6 +26,21 @@ class AppView extends Component {
   }
 
   render() {
+    const HeaderCard = (
+      <div>
+        <Row>
+            <Col span={4} offset={8}>
+              <CInputChange />
+            </Col>
+            <Col span={3} offset={1}>
+              <CSelectCurrency />
+            </Col>
+            <Col span={2}>
+              <CExchangeValue />
+            </Col>
+        </Row>
+      </div>
+    )
     return (
       <Layout className="layout">
         <Header>
@@ -31,11 +48,10 @@ class AppView extends Component {
             <Title style={{ color: "white" }}>Fx Rates</Title>
           </Typography>
         </Header>
-        <Content style={{ height: 800, padding: "0 50px" }}>
+        <Content>
           <Row>
             <Col span={20} offset={2}>
-              <Card title="Default size card">
-                <CSelectCurrency />
+              <Card title={HeaderCard} style={{ marginTop: 30, marginBottom: 30 }}>
                 <CHistoricalLineChart />
               </Card>
             </Col>

@@ -19,7 +19,7 @@ class HistoricalLineChart extends PureComponent {
     render () {
         const { data, currency } = this.props;
         return (
-            <ResponsiveContainer height={600}>
+            <ResponsiveContainer height={700}>
                 {this._renderLineChart(data, currency, '#8dd1e1')}
             </ResponsiveContainer>                                     
         )
