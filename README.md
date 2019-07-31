@@ -22,3 +22,7 @@ Run `npm start or yarn start` for a dev server. Navigate to `http://localhost:30
 
 Run `npm run build or yarn build` for builds the app for production to the build folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+Can use Dockerfile for quick process for production
+`docker build --no-cache -t [tag-image] .`
+`docker run --name [name container] -d -p [exposed port]:80 [tag-image]`
