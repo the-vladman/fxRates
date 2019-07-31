@@ -4,6 +4,7 @@ const initialRates = {
     historicalRates: [],
     currenciesList: [],
     baseCurrency: 'MXN',
+    inputValue: 1,
 }
 
 const ratesApp = (state = initialRates, action) => {
@@ -26,6 +27,12 @@ const ratesApp = (state = initialRates, action) => {
             return {
                 ...state,
                 baseCurrency: action.currency,
+            }
+        
+        case ratesTypes.CHANGE_INPUT:
+            return {
+                ...state,
+                inputValue: action.value,
             }
 
         default:
