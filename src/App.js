@@ -19,7 +19,7 @@ class AppView extends Component {
   async getLatest() {
     const { fetchLatest, addHistorical } = this.props;
     try {
-      await fetchService.getLatestStatic(fetchLatest, addHistorical);
+      await fetchService.getLatest(fetchLatest, addHistorical);
     } catch (error) {
       message.error(error);
     }
